@@ -1,9 +1,12 @@
 // TODO: Flesh out the `WeekTemperatures` struct and its method implementations to pass the tests.
 
+use std::collections::HashMap;
+
 pub struct WeekTemperatures {
-    // TODO
+    values: HashMap<Weekday, Option<i32>>,
 }
 
+#[derive(Debug, PartialEq, Eq, Hash)]
 pub enum Weekday {
     Monday,
     Tuesday,
@@ -16,15 +19,23 @@ pub enum Weekday {
 
 impl WeekTemperatures {
     pub fn new() -> Self {
-        todo!()
+        let mut res = HashMap::new();
+        res.insert(Weekday::Monday, None);
+        res.insert(Weekday::Tuesday, None);
+        res.insert(Weekday::Wednesday, None);
+        res.insert(Weekday::Thursday, None);
+        res.insert(Weekday::Friday, None);
+        res.insert(Weekday::Saturday, None);
+        res.insert(Weekday::Sunday, None);
+        Self { values: res }
     }
 
     pub fn get_temperature(&self, day: Weekday) -> Option<i32> {
-        todo!()
+        self.values.get(&day).copied().flatten()
     }
 
     pub fn set_temperature(&mut self, day: Weekday, temperature: i32) {
-        todo!()
+        self.values.insert(day, Some(temperature));
     }
 }
 
